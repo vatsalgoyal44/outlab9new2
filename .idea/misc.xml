@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_calendar_page.xml" value="0.3733031674208145" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.21472681269595076" />
+        <entry key="app/src/main/res/layout/main_nav_drawer.xml" value="0.22338218106414806" />
+        <entry key="app/src/main/res/layout/main_toolbar.xml" value="0.2956543444695156" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
