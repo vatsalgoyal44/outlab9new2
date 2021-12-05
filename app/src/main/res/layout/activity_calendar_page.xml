@@ -12,13 +12,80 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <include layout="@layout/main_toolbar"/>
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Calendar"
-            android:textStyle="bold"
-            />
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="27dp"
+                android:textStyle="bold"
+                android:text="Month"
+                android:id="@+id/monthname"
+                android:textColor="@color/black"
+                android:layout_marginStart="20dp"/>
+            <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                android:id="@+id/customcal"
+                android:layout_below="@id/monthname"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="20dp"
+                app:compactCalendarTargetHeight="300dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/customcal"
+                android:text="Date"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textSize="25dp"
+                android:id="@+id/selectedDate"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selectedDate"
+                android:id="@+id/lectures"
+                android:text="Lectures : 0"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:id="@+id/studyplan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lectures"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Study Plan : 0"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/exams"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/studyplan"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Exams : 0"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/assnm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/exams"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Assignments : 0"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 
@@ -28,10 +95,10 @@
         android:layout_gravity = "start"
         android:background="@color/white"
         >
-        <include
-            layout = "@layout/main_nav_drawer"/>
+
+        <include layout="@layout/main_nav_drawer" />
+
+
     </RelativeLayout>
-
-
 
 </androidx.drawerlayout.widget.DrawerLayout>
