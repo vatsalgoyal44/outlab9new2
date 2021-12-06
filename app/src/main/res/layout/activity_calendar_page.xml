@@ -26,13 +26,14 @@
                 android:textColor="#636363"
                 android:textSize="27dp"
                 android:textStyle="bold" />
+
             <com.github.sundeepk.compactcalendarview.CompactCalendarView
                 android:id="@+id/customcal"
-                android:layout_below="@id/monthname"
                 android:layout_width="wrap_content"
-                android:layout_height="300dp"
+                android:layout_height="350dp"
+                android:layout_below="@id/monthname"
                 android:layout_marginTop="20dp"
-                app:compactCalendarTargetHeight="300dp" />
+                app:compactCalendarTargetHeight="400dp" />
 
             <TextView
                 android:id="@+id/selectedDate"

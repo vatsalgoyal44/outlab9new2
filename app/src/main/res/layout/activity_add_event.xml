@@ -24,6 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/eventTitle"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -35,7 +36,7 @@
         android:layout_marginRight="25dp"
         app:boxStrokeColor="@color/white"
         app:boxStrokeWidth="3dp"
-        app:hintTextColor="@color/white"
+        app:hintTextColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -46,131 +47,224 @@
             android:hint="Title" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/eventDate"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginRight="25dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
         android:layout_below="@id/eventTitle"
-        app:boxStrokeColor="@color/black"
-        app:boxStrokeWidth="3dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/eventTitle"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:hintTextColor="@color/white">
+        android:id="@+id/dateRecView"
+        >
 
-        <EditText
-            android:id="@+id/enterDate"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventDate"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:hint="Date" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:hintTextColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/eventsubmitDate"
+            <EditText
+                android:id="@+id/enterDate"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Date"
+                android:inputType="date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+
+            android:id="@+id/datepicker"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventDate"
+            android:src="@drawable/ic_baseline_calendar_month_24" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginRight="25dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/eventDate"
-        app:boxStrokeColor="@color/black"
-        app:boxStrokeWidth="3dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventDate"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:hintTextColor="@color/white"
-        android:visibility="gone">
+        android:layout_below="@id/dateRecView"
+        android:id="@+id/subdateRel">
 
-        <EditText
-            android:id="@+id/entersubmitDate"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventsubmitDate"
+            android:layout_width="300dp"
+            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:hint="Submission Date"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/black"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/entersubmitDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:hint="Submission Date"
+                android:visibility="gone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <ImageButton
+
+            android:id="@+id/subdatepicker"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventsubmitDate"
             android:visibility="gone"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:src="@drawable/ic_baseline_calendar_month_24" />
+    </RelativeLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/eventTime"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/timeRelView"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subdateRel"
+
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventTime"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/black">
+
+            <EditText
+                android:id="@+id/enterTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Time"
+                android:inputType="time" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+
+            android:id="@+id/timepicker"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventTime"
+            android:src="@drawable/ic_baseline_access_time_filled_24"
+            android:onClick="popTimePicker"/>
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/eventsubmitDate"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="10dp"
-        app:boxStrokeColor="@color/black"
-        app:boxStrokeWidth="3dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventsubmitDate"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:hintTextColor="@color/white">
+        android:layout_below="@id/timeRelView"
+        android:id="@+id/submittimeRel"
+        app:layout_constraintTop_toBottomOf="@id/timeRelView"
+        >
 
-        <EditText
-            android:id="@+id/enterTime"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventsubmitTime"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Time"
-            android:inputType="time" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/black"
+            android:visibility="gone">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/eventsubmitTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/eventTime"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="10dp"
-        app:boxStrokeColor="@color/black"
-        app:boxStrokeWidth="3dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventTime"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:hintTextColor="@color/white"
-        android:visibility="gone">
+            <EditText
+                android:id="@+id/entersubmitTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Submission Time"
+                android:visibility="gone"
+                android:inputType="time" />
 
-        <EditText
-            android:id="@+id/entersubmitTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Submission Time"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+
+            android:id="@+id/subtimepicker"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventsubmitTime"
+            android:onClick="popTimePicker2"
             android:visibility="gone"
-            android:inputType="time" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:src="@drawable/ic_baseline_access_time_filled_24" />
+    </RelativeLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/eventDuration"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginRight="25dp"
-        android:layout_below="@id/eventsubmitTime"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        app:boxStrokeColor="@color/black"
-        app:boxStrokeWidth="3dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventsubmitTime"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:hintTextColor="@color/white">
+        android:layout_below="@id/submittimeRel"
+        app:layout_constraintTop_toBottomOf="@id/submittimeRel"
+        android:id="@+id/DescRel"
+        >
 
-        <EditText
-            android:id="@+id/enterDuration"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventDuration"
+            android:layout_width="300dp"
+            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
-            android:hint="Duration"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/black">
+
+            <EditText
+                android:id="@+id/enterDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Duration"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <ImageButton
+
+            android:id="@+id/durtimepicker"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventDuration"
+            android:onClick="popTimePicker3"
+            android:src="@drawable/ic_baseline_access_time_filled_24" />
+    </RelativeLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/eventDescription"
         android:layout_width="match_parent"
         android:layout_marginRight="25dp"
-        android:layout_below="@id/eventDuration"
+        android:layout_below="@id/DescRel"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
@@ -179,7 +273,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/eventDuration"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:hintTextColor="@color/white">
+        app:hintTextColor="@color/black">
 
         <EditText
             android:id="@+id/enterDescription"

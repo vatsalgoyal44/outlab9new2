@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21472681269595076" />
         <entry key="app/src/main/res/layout/currentview.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/default_view.xml" value="0.8667513766748998" />
+        <entry key="app/src/main/res/layout/event_list_item.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/fragment_assignments.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment_exams.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment_lectures.xml" value="0.20729166666666668" />

@@ -2,16 +2,24 @@ package com.example.calendarapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -19,13 +27,19 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Add_Event extends AppCompatActivity {
     private MaterialButton btnSubmit;
     EditText title,date,time,description,duration,submitdate,submittime;
     TextInputLayout eventtime,eventsubmittime,eventdate,eventsubmitdate,eventduration;
+    DatePickerDialog.OnDateSetListener setListener;
+    ImageButton datepicker, timepicker, submittimepicker,durationpicker, submitdatepicker;
     String Title,Date,Time,Description,Type,Duration;
     TextView heading;
+    int hour, minute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +77,63 @@ public class Add_Event extends AppCompatActivity {
         eventdate = findViewById(R.id.eventDate);
         eventsubmitdate = findViewById(R.id.eventsubmitDate);
         eventduration = findViewById(R.id.eventDuration);
+        datepicker = findViewById(R.id.datepicker);
+        timepicker = findViewById(R.id.timepicker);
+        submittimepicker = findViewById(R.id.subtimepicker);
+        durationpicker = findViewById(R.id.durtimepicker);
+        submitdatepicker = findViewById(R.id.subdatepicker);
+
+
+        Calendar calendar = Calendar.getInstance();
+        final int year  = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        /*setListener = new DatePickerDialog.OnDateSetListener(){
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth){
+                month++;
+                String date = day + "/" + month +"/"+year;
+                eventdate.setHelperText(date);
+            }
+        };*/
+
+        datepicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        Add_Event.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month++;
+                        String dat = day + "/" + month +"/"+year;
+                        date.setText(dat);
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+
+            }
+        });
+
+        submitdatepicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        Add_Event.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month++;
+                        String dat = day + "/" + month +"/"+year;
+                        submitdate.setText(dat);
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+
+            }
+        });
+
+
+
 
         if (Type.equals("assignment")) {
             eventtime.setVisibility(View.GONE);
@@ -72,6 +143,11 @@ public class Add_Event extends AppCompatActivity {
             eventsubmitdate.setVisibility(View.VISIBLE);
             submitdate.setVisibility(View.VISIBLE);
             eventduration.setVisibility(View.GONE);
+            submittimepicker.setVisibility(View.VISIBLE);
+            timepicker.setVisibility(View.GONE);
+            datepicker.setVisibility(View.GONE);
+            durationpicker.setVisibility(View.GONE);
+            submitdatepicker.setVisibility(View.VISIBLE);
         }
 
         btnSubmit=findViewById(R.id.btnSubmit);
@@ -101,6 +177,52 @@ public class Add_Event extends AppCompatActivity {
             }
         });
 
+    }
+    public void popTimePicker(View view)
+    {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                hour = selectedHour;
+                minute = selectedMinute;
+                time.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+            }
+        };
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, /*style,*/ onTimeSetListener, hour, minute, true);
+
+        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.show();
+    }
+
+    public void popTimePicker2(View view)
+    {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                hour = selectedHour;
+                minute = selectedMinute;
+                submittime.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+            }
+        };
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, /*style,*/ onTimeSetListener, hour, minute, true);
+
+        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.show();
+    }
+    public void popTimePicker3(View view)
+    {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                hour = selectedHour;
+                minute = selectedMinute;
+                duration.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+            }
+        };
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, /*style,*/ onTimeSetListener, hour, minute, true);
+
+        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.show();
     }
 
 }
