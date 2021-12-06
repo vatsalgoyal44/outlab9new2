@@ -51,7 +51,7 @@ public class Add_Event extends AppCompatActivity {
             heading.setText("Add Study Plan");
         }
 
-        title = (EditText) findViewById(R.id.enterTitle);
+        title = findViewById(R.id.enterTitle);
         date = findViewById(R.id.enterDate);
         time = findViewById(R.id.enterTime);
         description = findViewById(R.id.enterDescription);
@@ -72,6 +72,11 @@ public class Add_Event extends AppCompatActivity {
             eventsubmitdate.setVisibility(View.VISIBLE);
             submitdate.setVisibility(View.VISIBLE);
             eventduration.setVisibility(View.GONE);
+            time.setVisibility(View.GONE);
+            submittime.setVisibility(View.VISIBLE);
+            date.setVisibility(View.GONE);
+            submitdate.setVisibility(View.VISIBLE);
+            duration.setVisibility(View.GONE);
         }
 
         btnSubmit=findViewById(R.id.btnSubmit);
@@ -79,6 +84,7 @@ public class Add_Event extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Title=title.getText().toString();
+                System.out.println(Title + " Yahan print kiya hai1 ! ");
                 Date=date.getText().toString();
                 Time=time.getText().toString();
                 Description=description.getText().toString();
