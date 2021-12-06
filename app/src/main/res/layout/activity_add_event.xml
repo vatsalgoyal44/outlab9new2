@@ -1,7 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Add_Event"/>
+    tools:context=".Add_Event"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp">
+
+
+    <TextView
+        android:id="@+id/eventtype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="Add Event"
+        android:textColor="@color/yellow"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventTitle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventtype"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="25dp"
+        app:boxStrokeColor="@color/white"
+        app:boxStrokeWidth="3dp"
+        app:hintTextColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/enterTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventDate"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/eventTitle"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventTitle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/white">
+
+        <EditText
+            android:id="@+id/enterDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:hint="Date" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventsubmitDate"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/eventDate"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventDate"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/white"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/entersubmitDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:hint="Submission Date"
+            android:visibility="gone"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventsubmitDate"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventsubmitDate"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/white">
+
+        <EditText
+            android:id="@+id/enterTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time"
+            android:inputType="time" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventsubmitTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventTime"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventTime"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/white"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/entersubmitTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Submission Time"
+            android:visibility="gone"
+            android:inputType="time" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventDuration"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_below="@id/eventsubmitTime"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventsubmitTime"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/white">
+
+        <EditText
+            android:id="@+id/enterDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Duration"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventDescription"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_below="@id/eventDuration"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventDuration"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/white">
+
+        <EditText
+            android:id="@+id/enterDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/primaryyellow"
+        android:elevation="0dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingLeft="30dp"
+        android:paddingTop="17dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="17dp"
+        android:text="Save"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventDescription"
+        app:layout_constraintVertical_bias="0.0"
+        app:strokeColor="@color/yellow"
+        app:strokeWidth="2dp" />
+
+
+
+</RelativeLayout>

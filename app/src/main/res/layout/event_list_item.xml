@@ -90,7 +90,7 @@
                     android:layout_weight="0"
                     android:backgroundTint="@color/primaryyellow"
                     android:src="@drawable/ic_delete"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     />
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView

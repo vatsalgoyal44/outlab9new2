@@ -1,24 +1,40 @@
 package com.example.calendarapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Exams#newInstance} factory method to
+ * Use the {@link Exams #newInstance} factory method to
  * create an instance of this fragment.
  */
 public class Exams extends Fragment {
+    View view;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    Button addEvent;
+    RecyclerView eventRecView;
+    ArrayList events;
+    EventsRecyclerViewAdapter eventRecViewAdapter;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -59,6 +75,28 @@ public class Exams extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_exams, container, false);
+        view = inflater.inflate(R.layout.fragment_exams, container, false);
+
+        eventRecView = view.findViewById(R.id.exam_quizRecView);
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+        events = dataBaseHelper.getExam_quiz();
+        //DEBUG
+        eventRecViewAdapter = new EventsRecyclerViewAdapter(events, getContext());
+        eventRecView.setLayoutManager(new LinearLayoutManager(getContext()));
+        eventRecView.setAdapter(eventRecViewAdapter);
+
+        addEvent=view.findViewById(R.id.btnaddexam);
+        addEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Add_Event.class);
+                intent.putExtra("type","exam_quiz");
+                getActivity().startActivity(intent);
+            }
+        });
+
+        return view;
     }
+
+
 }

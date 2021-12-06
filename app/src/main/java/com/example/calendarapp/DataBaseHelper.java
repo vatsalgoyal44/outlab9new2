@@ -204,90 +204,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    public int getNumAssignment(String Date){
+    public int[] getNumEvents(String Date){
 
-        int num=0;
+        int num[]={0,0,0,0};
+        //num[0]=0 study_plan
+        //num[1]=0 assignment
+        //num[2]=0 lecture
+        //num[3]=0 exam_quiz
 
-        String queryString="SELECT * FROM " + EVENT_TABLE;
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery(queryString,null);
-
-        if(cursor.moveToFirst()){
-            do{
-                if(cursor.getString(2).equals(Date)) {
-                    if (cursor.getString(6).equals("assignment")) {
-                        num = num + 1;
-                    }
-                }
-            }while(cursor.moveToNext());
-        }
-        else{
-
-        }
-        cursor.close();
-        db.close();
-        return num;
-
-    }
-
-    public int getNumExam_quiz(String Date){
-
-        int num=0;
-
-        String queryString="SELECT * FROM " + EVENT_TABLE;
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery(queryString,null);
-
-        if(cursor.moveToFirst()){
-            do{
-                if(cursor.getString(2).equals(Date)) {
-                    if (cursor.getString(6).equals("exam_quiz")) {
-                        num = num + 1;
-                    }
-                }
-            }while(cursor.moveToNext());
-        }
-        else{
-
-        }
-        cursor.close();
-        db.close();
-        return num;
-
-    }
-
-    public int getNumLecture(String Date){
-
-        int num=0;
-
-        String queryString="SELECT * FROM " + EVENT_TABLE;
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery(queryString,null);
-
-        if(cursor.moveToFirst()){
-            do{
-                if(cursor.getString(2).equals(Date)) {
-                    if (cursor.getString(6).equals("lecture")) {
-                        num = num + 1;
-                    }
-                }
-            }while(cursor.moveToNext());
-        }
-        else{
-
-        }
-        cursor.close();
-        db.close();
-        return num;
-
-    }
-
-    public int getNumStudyplan(String Date){
-
-        int num=0;
 
         String queryString="SELECT * FROM " + EVENT_TABLE;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -298,7 +222,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             do{
                 if(cursor.getString(2).equals(Date)) {
                     if (cursor.getString(6).equals("studyplan")) {
-                        num = num + 1;
+                        num[0]++;
+                    }
+                    else if (cursor.getString(6).equals("assignment")) {
+                        num[1]++;
+                    }
+                    else if (cursor.getString(6).equals("lecture")) {
+                        num[2]++;
+                    }
+                    else if (cursor.getString(6).equals("exam_quiz")) {
+                        num[3]++;
                     }
                 }
             }while(cursor.moveToNext());
@@ -309,9 +242,118 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return num;
-
     }
 
+//
+//
+//    public int getNumAssignment(String Date){
+//
+//        int num=0;
+//
+//        String queryString="SELECT * FROM " + EVENT_TABLE;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = db.rawQuery(queryString,null);
+//
+//        if(cursor.moveToFirst()){
+//            do{
+//                if(cursor.getString(2).equals(Date)) {
+//                    if (cursor.getString(6).equals("assignment")) {
+//                        num = num + 1;
+//                    }
+//                }
+//            }while(cursor.moveToNext());
+//        }
+//        else{
+//
+//        }
+//        cursor.close();
+//        db.close();
+//        return num;
+//
+//    }
+//
+//    public int getNumExam_quiz(String Date){
+//
+//        int num=0;
+//
+//        String queryString="SELECT * FROM " + EVENT_TABLE;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = db.rawQuery(queryString,null);
+//
+//        if(cursor.moveToFirst()){
+//            do{
+//                if(cursor.getString(2).equals(Date)) {
+//                    if (cursor.getString(6).equals("exam_quiz")) {
+//                        num = num + 1;
+//                    }
+//                }
+//            }while(cursor.moveToNext());
+//        }
+//        else{
+//
+//        }
+//        cursor.close();
+//        db.close();
+//        return num;
+//
+//    }
+//
+//    public int getNumLecture(String Date){
+//
+//        int num=0;
+//
+//        String queryString="SELECT * FROM " + EVENT_TABLE;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = db.rawQuery(queryString,null);
+//
+//        if(cursor.moveToFirst()){
+//            do{
+//                if(cursor.getString(2).equals(Date)) {
+//                    if (cursor.getString(6).equals("lecture")) {
+//                        num = num + 1;
+//                    }
+//                }
+//            }while(cursor.moveToNext());
+//        }
+//        else{
+//
+//        }
+//        cursor.close();
+//        db.close();
+//        return num;
+//
+//    }
+//
+//    public int getNumStudyplan(String Date){
+//
+//        int num=0;
+//
+//        String queryString="SELECT * FROM " + EVENT_TABLE;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = db.rawQuery(queryString,null);
+//
+//        if(cursor.moveToFirst()){
+//            do{
+//                if(cursor.getString(2).equals(Date)) {
+//                    if (cursor.getString(6).equals("studyplan")) {
+//                        num = num + 1;
+//                    }
+//                }
+//            }while(cursor.moveToNext());
+//        }
+//        else{
+//
+//        }
+//        cursor.close();
+//        db.close();
+//        return num;
+//
+//    }
+//
 
 
 }
