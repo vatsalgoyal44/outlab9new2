@@ -34,7 +34,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="60dp"
         android:layout_marginRight="25dp"
-        app:boxStrokeColor="@color/white"
+        app:boxStrokeColor="@color/black"
         app:boxStrokeWidth="3dp"
         app:hintTextColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
