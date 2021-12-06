@@ -48,6 +48,7 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
         event_model Event=Events.get(position);
         //DOUBT
         holder.title.setText(Event.getTitle());
+        System.out.println(Event.getTitle() + " Yahan print kiya hai1 ! ");
         holder.date.setText(Event.getDate());
         holder.time.setText(Event.getTime());
         holder.description.setText(Event.getDescription());
