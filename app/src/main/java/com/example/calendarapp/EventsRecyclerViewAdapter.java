@@ -92,7 +92,7 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             eventListItemParent=itemView.findViewById(R.id.events_listParent);
-            title=itemView.findViewById(R.id.Time);
+            title=itemView.findViewById(R.id.Title);
             date=itemView.findViewById(R.id.Date);
             time=itemView.findViewById(R.id.Time);
             description=itemView.findViewById(R.id.Description);

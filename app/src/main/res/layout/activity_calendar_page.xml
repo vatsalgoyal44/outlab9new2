@@ -33,27 +33,26 @@
                 android:layout_height="300dp"
                 android:layout_marginTop="20dp"
                 app:compactCalendarTargetHeight="300dp" />
+
             <TextView
+                android:id="@+id/selectedDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/customcal"
-                android:text="Date"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:textSize="25dp"
-                android:id="@+id/selectedDate"
-                />
+                android:text="Date"
+                android:textSize="25dp" />
 
             <TextView
+                android:id="@+id/lectures"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/selectedDate"
-                android:id="@+id/lectures"
-                android:text="Lectures : 0"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="25dp"
-                android:textSize="20dp"
-                />
+                android:layout_marginTop="10dp"
+                android:text="Lectures : 0"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/studyplan"

@@ -67,8 +67,10 @@ public class Add_Event extends AppCompatActivity {
         if (Type.equals("assignment")) {
             eventtime.setVisibility(View.GONE);
             eventsubmittime.setVisibility(View.VISIBLE);
+            submittime.setVisibility(View.VISIBLE);
             eventdate.setVisibility(View.GONE);
             eventsubmitdate.setVisibility(View.VISIBLE);
+            submitdate.setVisibility(View.VISIBLE);
             eventduration.setVisibility(View.GONE);
         }
 

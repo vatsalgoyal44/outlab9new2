@@ -244,6 +244,48 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return num;
     }
 
+    public boolean isEvent(String Date){
+
+        int num[]={0,0,0,0};
+        //num[0]=0 study_plan
+        //num[1]=0 assignment
+        //num[2]=0 lecture
+        //num[3]=0 exam_quiz
+
+
+        String queryString="SELECT * FROM " + EVENT_TABLE;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString,null);
+
+        if(cursor.moveToFirst()){
+            do{
+                if(cursor.getString(2).equals(Date)) {
+                    if (cursor.getString(6).equals("studyplan")) {
+                        num[0]++;
+                    }
+                    else if (cursor.getString(6).equals("assignment")) {
+                        num[1]++;
+                    }
+                    else if (cursor.getString(6).equals("lecture")) {
+                        num[2]++;
+                    }
+                    else if (cursor.getString(6).equals("exam_quiz")) {
+                        num[3]++;
+                    }
+                }
+            }while(cursor.moveToNext());
+        }
+        else{
+
+        }
+        cursor.close();
+        db.close();
+        if(num[0]+num[1]+num[2]+num[3]>0) return true;
+        else return false;
+
+    }
+
 //
 //
 //    public int getNumAssignment(String Date){
