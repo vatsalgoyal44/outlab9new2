@@ -19,6 +19,10 @@ public class event_model {
         this.Type = type;
     }
 
+    public event_model(int ID) {
+        this.ID = ID;
+    }
+
     public event_model(int id, String title, String date, String time, String description, String duration,  String type) {
         this.ID=id;
         this.Title = title;

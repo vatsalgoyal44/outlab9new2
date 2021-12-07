@@ -56,6 +56,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    public boolean editEvent(String type, event_model event){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(EVENT_TITLE, event.getTitle());
+        cv.put(EVENT_DATE, event.getDate());
+        cv.put(EVENT_TIME, event.getTime());
+        cv.put(EVENT_DESCRIPTION, event.getDescription());
+        cv.put(EVENT_TYPE, type);
+        cv.put(EVENT_DURATION, event.getDuration());
+
+        long update = db.update(EVENT_TABLE,cv,"EVENT_ID = ?",new String[] { Integer.toString(event.getID()) });
+
+        db.close();
+
+        if(update==(-1))return false;
+        else return true;
+    }
+
     public boolean deleteEvent(event_model event){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -75,6 +95,44 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
 
     }
+
+
+    public event_model getEvent(int ID){
+
+        event_model newEvent=new event_model(ID);
+        //Doubt
+        String queryString="SELECT * FROM " + EVENT_TABLE + " WHERE " + EVENT_ID + " = " + ID;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString,null);
+
+        if(cursor.moveToFirst()){
+
+                    int event_id = cursor.getInt(0);
+                    String event_title = cursor.getString(1);
+                    String event_date = cursor.getString(2);
+                    String event_time = cursor.getString(3);
+                    String event_description = cursor.getString(4);
+                    String event_duration = cursor.getString(5);
+                    String event_type = cursor.getString(6);
+
+                    newEvent.setID(event_id);
+                    newEvent.setTitle(event_title);
+                    newEvent.setDate(event_date);
+                    newEvent.setTime(event_time);
+                    newEvent.setDescription(event_description);
+                    newEvent.setDuration(event_duration);
+                    newEvent.setType(event_type);
+        }
+        else{
+
+        }
+        cursor.close();
+        db.close();
+        return newEvent;
+
+    }
+
 
     public ArrayList<event_model> getAssignments(){
         ArrayList<event_model> returnList=new ArrayList<>();

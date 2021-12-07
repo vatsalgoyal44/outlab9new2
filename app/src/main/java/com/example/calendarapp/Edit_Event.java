@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Add_Event extends AppCompatActivity {
+public class Edit_Event extends AppCompatActivity {
     private MaterialButton btnSubmit;
     EditText title,date,time,description,duration,submitdate,submittime;
     TextInputLayout eventtime,eventsubmittime,eventdate,eventsubmitdate,eventduration;
@@ -38,6 +38,8 @@ public class Add_Event extends AppCompatActivity {
     ImageButton datepicker, timepicker, submittimepicker,durationpicker, submitdatepicker;
     String Title,Date,Time,Description,Type,Duration,Action;
     TextView heading;
+    event_model Curr_event;
+    int ID;
     int hour, minute;
 
     @Override
@@ -47,41 +49,28 @@ public class Add_Event extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Type = extras.getString("type");
-
+            System.out.println(extras.getInt("Id") + "Yahan print kiya hai ! ");
+            ID = extras.getInt("Id");
         }
 
-        heading=findViewById(R.id.eventtype);
-
-        if(Type.equals("assignment")){
-            heading.setText("Add Assignment");
-        }
-        else if(Type.equals("exam_quiz")){
-            heading.setText("Add Exam or quiz");
-        }
-        else if(Type.equals("lecture")){
-            heading.setText("Add Lecture");
-        }
-        else if(Type.equals("studyplan")){
-            heading.setText("Add Study Plan");
-        }
-
-        title = (EditText) findViewById(R.id.enterTitle);
-        date = findViewById(R.id.enterDate);
-        time = findViewById(R.id.enterTime);
-        description = findViewById(R.id.enterDescription);
-        duration = findViewById(R.id.enterDuration);
-        submitdate = findViewById(R.id.entersubmitDate);
-        submittime = findViewById(R.id.entersubmitTime);
-        eventtime = findViewById(R.id.eventTime);
-        eventsubmittime = findViewById(R.id.eventsubmitTime);
-        eventdate = findViewById(R.id.eventDate);
-        eventsubmitdate = findViewById(R.id.eventsubmitDate);
-        eventduration = findViewById(R.id.eventDuration);
-        datepicker = findViewById(R.id.datepicker);
-        timepicker = findViewById(R.id.timepicker);
-        submittimepicker = findViewById(R.id.subtimepicker);
-        durationpicker = findViewById(R.id.durtimepicker);
-        submitdatepicker = findViewById(R.id.subdatepicker);
+        heading=findViewById(R.id.eventtypeedit);
+        title = (EditText) findViewById(R.id.enterTitleedit);
+        date = findViewById(R.id.enterDateedit);
+        time = findViewById(R.id.enterTimeedit);
+        description = findViewById(R.id.enterDescriptionedit);
+        duration = findViewById(R.id.enterDurationedit);
+        submitdate = findViewById(R.id.entersubmitDateedit);
+        submittime = findViewById(R.id.entersubmitTimeedit);
+        eventtime = findViewById(R.id.eventTimeedit);
+        eventsubmittime = findViewById(R.id.eventsubmitTimeedit);
+        eventdate = findViewById(R.id.eventDateedit);
+        eventsubmitdate = findViewById(R.id.eventsubmitDateedit);
+        eventduration = findViewById(R.id.eventDurationedit);
+        datepicker = findViewById(R.id.datepickeredit);
+        timepicker = findViewById(R.id.timepickeredit);
+        submittimepicker = findViewById(R.id.subtimepickeredit);
+        durationpicker = findViewById(R.id.durtimepickeredit);
+        submitdatepicker = findViewById(R.id.subdatepickeredit);
 
 
         Calendar calendar = Calendar.getInstance();
@@ -98,11 +87,38 @@ public class Add_Event extends AppCompatActivity {
             }
         };*/
 
+        //load
+
+        if(Type.equals("assignment")){
+            heading.setText("Edit Assignment");
+        }
+        else if(Type.equals("exam_quiz")){
+            heading.setText("Edit Exam or quiz");
+        }
+        else if(Type.equals("lecture")){
+            heading.setText("Edit Lecture");
+        }
+        else if(Type.equals("studyplan")){
+            heading.setText("Edit Study Plan");
+        }
+
+
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(Edit_Event.this);
+        Curr_event=dataBaseHelper.getEvent(ID);
+
+        title.setText(Curr_event.getTitle());
+        date.setText(Curr_event.getDate());
+        time.setText(Curr_event.getTime());
+        description.setText(Curr_event.getDescription());
+        duration.setText(Curr_event.getDuration());
+        submitdate.setText(Curr_event.getDate());
+        submittime.setText(Curr_event.getTime());
+
         datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        Add_Event.this, new DatePickerDialog.OnDateSetListener() {
+                        Edit_Event.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month++;
@@ -119,7 +135,7 @@ public class Add_Event extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        Add_Event.this, new DatePickerDialog.OnDateSetListener() {
+                        Edit_Event.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month++;
@@ -150,7 +166,7 @@ public class Add_Event extends AppCompatActivity {
             submitdatepicker.setVisibility(View.VISIBLE);
         }
 
-        btnSubmit=findViewById(R.id.btnSubmit);
+        btnSubmit=findViewById(R.id.btnSubmitedit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,19 +181,20 @@ public class Add_Event extends AppCompatActivity {
                     Duration="null";
                 }
 
-                event_model new_event= new event_model(Title,Date,Time,Description,Duration,Type);
+                event_model new_event= new event_model(ID,Title,Date,Time,Description,Duration,Type);
 
-                DataBaseHelper dataBaseHelper=new DataBaseHelper(Add_Event.this);
-                dataBaseHelper.addEvent(Type,new_event);
+                DataBaseHelper dataBaseHelper=new DataBaseHelper(Edit_Event.this);
+                dataBaseHelper.editEvent(Type,new_event);
 
-                    Intent intent=new Intent(Add_Event.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                Intent intent=new Intent(Edit_Event.this,MainActivity.class);
+                startActivity(intent);
+                finish();
 
             }
         });
 
     }
+
     public void popTimePicker(View view)
     {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
