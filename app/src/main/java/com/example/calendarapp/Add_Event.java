@@ -153,6 +153,16 @@ public class Add_Event extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month++;
                         String dat = day + "/" + month +"/"+year;
+                        if (month<10 && day<10){
+                            dat= "0" + day + "/" + "0" + month +"/"+year;
+                        }
+                        else if (day<10){
+                            dat= "0" + day + "/" + month +"/"+year;
+                        }
+                        else if (month<10){
+                            dat= day + "/" + "0" +  month +"/"+year;
+                        }
+                        else dat = day + "/" + month +"/"+year;
                         date.setText(dat);
                     }
                 }, year, month, day);
@@ -170,6 +180,16 @@ public class Add_Event extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month++;
                         String dat = day + "/" + month +"/"+year;
+                        if (month<10 && day<10){
+                            dat= "0" + day + "/" + "0" + month +"/"+year;
+                        }
+                        else if (day<10){
+                            dat= "0" + day + "/" + month +"/"+year;
+                        }
+                        else if (month<10){
+                                dat= day + "/" + "0" +  month +"/"+year;
+                        }
+                        else dat = day + "/" + month +"/"+year;
                         submitdate.setText(dat);
                     }
                 }, year, month, day);
@@ -213,21 +233,21 @@ public class Add_Event extends AppCompatActivity {
                 }
 
                 Pattern timeP = Pattern.compile("([01][0-9]|2[0-3]):[0-5][0-9]");
-                //Pattern dateP = Pattern.compile("^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$");
+                Pattern dateP = Pattern.compile("^[0-9]{2}/[0-9]{2}/[0-9]{4}$");
                 Matcher timeM= timeP.matcher(Time);
-                //Matcher  dateM= dateP.matcher(Date);
+                Matcher  dateM= dateP.matcher(Date);
                 Matcher  durationM= timeP.matcher(Duration);
                 boolean timeB = timeM.matches();
-                //boolean dateB = dateM.matches();
+                boolean dateB = dateM.matches();
                 boolean durationB = durationM.matches();
 
                 if(Duration.equals("")||Title.equals("")||Date.equals("")||Time.equals("")){
-                    Toast.makeText(Add_Event.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Add_Event.this, "Please fill all * marked fields", Toast.LENGTH_SHORT).show();
                 }
                 else if(!timeB){
                     Toast.makeText(Add_Event.this, "Please fill time in following format hh:mm or choose from clock button", Toast.LENGTH_SHORT).show();
                 }
-                else if(!validateJavaDate(Date)){
+                else if(!validateJavaDate(Date)||!dateB){
                     Toast.makeText(Add_Event.this, "Please fill date in following format dd/mm/yyyy or choose from calendar button", Toast.LENGTH_SHORT).show();
                 }
                 else if(!durationB && !Type.equals("assignment")){

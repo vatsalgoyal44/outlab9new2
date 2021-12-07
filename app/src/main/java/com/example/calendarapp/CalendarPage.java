@@ -36,6 +36,7 @@ public class CalendarPage extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     CompactCalendarView eventsCalendar;
+    int currYear,currMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,13 +98,47 @@ public class CalendarPage extends AppCompatActivity {
         TextView month = findViewById(R.id.monthname);
         month.setText(new DateFormatSymbols().getMonths()[calendar.get(Calendar.MONTH)]);
 
+        String calendardateN = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+        String calendarmonthN = Integer.toString((calendar.get(Calendar.MONTH) + 1));
+        String calendaryearN = Integer.toString(calendar.get(Calendar.YEAR));
+        currYear=calendar.get(Calendar.YEAR);
+        currMonth=calendar.get(Calendar.MONTH) + 1;
+
+        String calendarformatdateN = calendardateN + "/" + calendarmonthN + "/" + calendaryearN;
+        if (calendar.get(Calendar.DAY_OF_MONTH) < 10 && (calendar.get(Calendar.MONTH) + 1) < 10) {
+            calendarformatdateN = "0" + calendardateN + "/" + "0" + calendarmonthN + "/" + calendaryearN;
+        } else if (calendar.get(Calendar.DAY_OF_MONTH) < 10) {
+            calendarformatdateN = "0" + calendardateN + "/" + calendarmonthN + "/" + calendaryearN;
+        } else if ((calendar.get(Calendar.MONTH) + 1) < 10) {
+            calendarformatdateN = calendardateN + "/" + "0" + calendarmonthN + "/" + calendaryearN;
+        }
+
+
         DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
-        int values[] = dataBaseHelper.getNumEvents(calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH)+1) + "/" + calendar.get(Calendar.YEAR));
+        System.out.println("+++++++++++++++++++++++");
+        System.out.println("1 get num event "+calendarformatdateN);
+        System.out.println("+++++++++++++++++++++++");
+
+        int values[] = dataBaseHelper.getNumEvents(calendarformatdateN);
 
         YearMonth yearMonthObject = YearMonth.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1);
         int daysInMonth = yearMonthObject.lengthOfMonth();
         for(int date = 1; date<=daysInMonth; date++){
-            if(dataBaseHelper.isEvent(date+"/"+(calendar.get(Calendar.MONTH)+1) + "/" + calendar.get(Calendar.YEAR))){
+
+            String calendardate = Integer.toString(date);
+            String calendarmonth = Integer.toString((calendar.get(Calendar.MONTH) + 1));
+            String calendaryear = Integer.toString(calendar.get(Calendar.YEAR));
+
+            String calendarformatdate = calendardate + "/" + calendarmonth + "/" + calendaryear;
+            if (date < 10 && (calendar.get(Calendar.MONTH) + 1) < 10) {
+                calendarformatdate = "0" + calendardate + "/" + "0" + calendarmonth + "/" + calendaryear;
+            } else if (date < 10) {
+                calendarformatdate = "0" + calendardate + "/" + calendarmonth + "/" + calendaryear;
+            } else if ((calendar.get(Calendar.MONTH) + 1) < 10) {
+                calendarformatdate = calendardate + "/" + "0" + calendarmonth + "/" + calendaryear;
+            }
+
+            if(dataBaseHelper.isEvent(calendarformatdate)){
                 String str = (new DateFormatSymbols().getMonths()[calendar.get(Calendar.MONTH)]).substring(0,3)+" "+date+" "+calendar.get(Calendar.YEAR)+" 00:00:01.454 UTC";
                 SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz");
                 Date datesel = calendar.getTime();
@@ -118,7 +153,6 @@ public class CalendarPage extends AppCompatActivity {
                 eventsCalendar.addEvent(ev);
             }
         }
-
 
 
         TextView lec = findViewById(R.id.lectures);
@@ -152,12 +186,28 @@ public class CalendarPage extends AppCompatActivity {
             public void onDayClick(Date dateClicked) {
                 //List<Event> events = eventsCalendar.getEvents(dateClicked);
                 selecteddate.setText(dateClicked.getDate() + " " + (new DateFormatSymbols().getMonths()[dateClicked.getMonth()]) + " " + (dateClicked.getYear()+1900));
-                int values[] = dataBaseHelper.getNumEvents(dateClicked.getDate() + "/" + (dateClicked.getMonth()+1) + "/" + (dateClicked.getYear()+1900));
+
+                String calendardate = Integer.toString(dateClicked.getDate());
+                String calendarmonth = Integer.toString(currMonth);
+                String calendaryear = Integer.toString(currYear);
+
+                String calendarformatdate = calendardate + "/" + calendarmonth + "/" + calendaryear;
+                if (dateClicked.getDate() < 10 && currMonth< 10) {
+                    calendarformatdate = "0" + calendardate + "/" + "0" + calendarmonth + "/" + calendaryear;
+                } else if (dateClicked.getDate() < 10) {
+                    calendarformatdate = "0" + calendardate + "/" + calendarmonth + "/" + calendaryear;
+                } else if (currMonth < 10) {
+                    calendarformatdate = calendardate + "/" + "0" + calendarmonth + "/" + calendaryear;
+                }
+                System.out.println("+++++++++++++++++++++++");
+                System.out.println("2 get num event "+calendarformatdate);
+                System.out.println("+++++++++++++++++++++++");
+
+                int values[] = dataBaseHelper.getNumEvents(calendarformatdate);
                 lec.setText("Lectures: "+values[2]);
                 exam.setText("Exams: "+values[3]);
                 studyplan.setText("Study Plan: "+values[0]);
                 assignm.setText("Assignments: "+values[1]);
-
             }
 
             @Override
@@ -166,7 +216,26 @@ public class CalendarPage extends AppCompatActivity {
                 month.setText(new DateFormatSymbols().getMonths()[firstDayOfNewMonth.getMonth()]);
                 selecteddate.setText(firstDayOfNewMonth.getDate() + " " + (new DateFormatSymbols().getMonths()[firstDayOfNewMonth.getMonth()]) + " " + (firstDayOfNewMonth.getYear()+1900));
                 //Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
-                int values[] = dataBaseHelper.getNumEvents(firstDayOfNewMonth.getDate() + "/" + (firstDayOfNewMonth.getMonth()+1) + "/" + (firstDayOfNewMonth.getYear()+1900));
+
+                String calendardate = Integer.toString(firstDayOfNewMonth.getDate());
+                String calendarmonth = Integer.toString((firstDayOfNewMonth.getMonth()+1));
+                String calendaryear = Integer.toString( (firstDayOfNewMonth.getYear()+1900));
+                currYear=(firstDayOfNewMonth.getYear()+1900);
+                currMonth=(firstDayOfNewMonth.getMonth()+1);
+                String calendarformatdate = calendardate + "/" + calendarmonth + "/" + calendaryear;
+                if (firstDayOfNewMonth.getDate() < 10 && (firstDayOfNewMonth.getMonth()+1) < 10) {
+                    calendarformatdate = "0" + calendardate + "/" + "0" + calendarmonth + "/" + calendaryear;
+                } else if (firstDayOfNewMonth.getDate() < 10) {
+                    calendarformatdate = "0" + calendardate + "/" + calendarmonth + "/" + calendaryear;
+                } else if ((firstDayOfNewMonth.getMonth()+1) < 10) {
+                    calendarformatdate = calendardate + "/" + "0" + calendarmonth + "/" + calendaryear;
+                }
+
+                System.out.println("+++++++++++++++++++++++");
+                System.out.println("3 get num event "+ calendarformatdate);
+                System.out.println("+++++++++++++++++++++++");
+
+                int values[] = dataBaseHelper.getNumEvents(calendarformatdate);
                 lec.setText("Lectures: "+values[2]);
                 exam.setText("Exams: "+values[3]);
                 studyplan.setText("Study Plan: "+values[0]);
@@ -176,7 +245,25 @@ public class CalendarPage extends AppCompatActivity {
                 int daysInMonth = yearMonthObject.lengthOfMonth();
                 eventsCalendar.removeAllEvents();
                 for(int date = 1; date<=daysInMonth; date++){
-                    if(dataBaseHelper.isEvent(date+"/"+(firstDayOfNewMonth.getMonth()+1) + "/" + (firstDayOfNewMonth.getYear()+1900))){
+
+                    String calendardateN = Integer.toString(date);
+                    String calendarmonthN = Integer.toString(currMonth);
+                    String calendaryearN = Integer.toString( currYear);
+
+                    String calendarformatdateN = calendardateN + "/" + calendarmonthN + "/" + calendaryearN;
+                    if (date < 10 && currMonth < 10) {
+                        calendarformatdateN = "0" + calendardateN + "/" + "0" + calendarmonthN + "/" + calendaryearN;
+                    } else if (date < 10) {
+                        calendarformatdateN = "0" + calendardateN + "/" + calendarmonthN + "/" + calendaryearN;
+                    } else if (currMonth < 10) {
+                        calendarformatdateN = calendardateN + "/" + "0" + calendarmonthN + "/" + calendaryearN;
+                    }
+                    if(date==6) {
+                        System.out.println("+++++++++++++++++++++++");
+                        System.out.println("2 is event " + calendarformatdateN);
+                        System.out.println("+++++++++++++++++++++++");
+                    }
+                    if(dataBaseHelper.isEvent(calendarformatdateN)){
                         String str = (new DateFormatSymbols().getMonths()[firstDayOfNewMonth.getMonth()]).substring(0,3)+" "+date+" "+(firstDayOfNewMonth.getYear()+1900)+" 00:00:01.454 UTC";
                         SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz");
                         Date datesel = calendar.getTime();
