@@ -29,6 +29,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
+
 
 public class Edit_Event extends AppCompatActivity {
     private MaterialButton btnSubmit;
@@ -42,6 +48,40 @@ public class Edit_Event extends AppCompatActivity {
     int ID;
     int hour, minute;
 
+    public static boolean validateJavaDate(String strDate)
+    {
+        /* Check if date is 'null' */
+        if (strDate.trim().equals(""))
+        {
+            return true;
+        }
+        /* Date is not 'null' */
+        else
+        {
+            /*
+             * Set preferred date format,
+             * For example MM-dd-yyyy, MM.dd.yyyy,dd.MM.yyyy etc.*/
+            SimpleDateFormat sdfrmt = new SimpleDateFormat("dd/MM/yyyy");
+            sdfrmt.setLenient(false);
+            /* Create Date object
+             * parse the string into date
+             */
+            try
+            {
+                Date javaDate = sdfrmt.parse(strDate);
+                System.out.println(strDate+" is valid date format");
+            }
+            /* Date format is invalid */
+            catch (ParseException e)
+            {
+                System.out.println(strDate+" is Invalid Date format");
+                return false;
+            }
+            /* Return true if date format is valid */
+            return true;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +92,9 @@ public class Edit_Event extends AppCompatActivity {
             System.out.println(extras.getInt("Id") + "Yahan print kiya hai ! ");
             ID = extras.getInt("Id");
         }
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(ID + " Yahan edit_event mein ID print kiya hai1 ! ");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
         heading=findViewById(R.id.eventTypeEdit);
         title = (EditText) findViewById(R.id.enterTitleedit);
@@ -87,8 +130,6 @@ public class Edit_Event extends AppCompatActivity {
             }
         };*/
 
-        //load
-
         if(Type.equals("assignment")){
             heading.setText("Edit Assignment");
         }
@@ -105,7 +146,9 @@ public class Edit_Event extends AppCompatActivity {
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(Edit_Event.this);
         Curr_event=dataBaseHelper.getEvent(ID);
-
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(Curr_event.getID() + " Yahan ID edit_event mein print kiya hai1 ! ");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         title.setText(Curr_event.getTitle());
         date.setText(Curr_event.getDate());
         time.setText(Curr_event.getTime());
@@ -181,18 +224,40 @@ public class Edit_Event extends AppCompatActivity {
                     Duration="null";
                 }
 
-                event_model new_event= new event_model(ID,Title,Date,Time,Description,Duration,Type);
+                Pattern timeP = Pattern.compile("([01][0-9]|2[0-3]):[0-5][0-9]");
+                //Pattern dateP = Pattern.compile("^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$");
+                Matcher timeM= timeP.matcher(Time);
+                //Matcher  dateM= dateP.matcher(Date);
+                Matcher  durationM= timeP.matcher(Duration);
+                boolean timeB = timeM.matches();
+                //boolean dateB = dateM.matches();
+                boolean durationB = durationM.matches();
 
-                DataBaseHelper dataBaseHelper=new DataBaseHelper(Edit_Event.this);
-                dataBaseHelper.editEvent(Type,new_event);
+                if(Duration.equals("")||Title.equals("")||Date.equals("")||Time.equals("")||Description.equals("")){
+                    Toast.makeText(Edit_Event.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                }
+                else if(!timeB){
+                    Toast.makeText(Edit_Event.this, "Please fill valid time in following format hh:mm or choose from clock button", Toast.LENGTH_SHORT).show();
+                }
+                else if(!validateJavaDate(Date)){
+                    Toast.makeText(Edit_Event.this, "Please fill valid date in following format dd/mm/yyyy or choose from calendar button", Toast.LENGTH_SHORT).show();
+                }
+                else if(!durationB && !Type.equals("assignment")){
+                    Toast.makeText(Edit_Event.this, "Please fill valid duration in following format hh:mm or choose from clock button", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    event_model new_event = new event_model(Curr_event.getID(),Title, Date, Time, Description, Duration, Type);
 
-                Intent intent=new Intent(Edit_Event.this,MainActivity.class);
-                startActivity(intent);
-                finish();
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(Edit_Event.this);
+                    dataBaseHelper.editEvent(Type, new_event);
 
+                    Intent intent = new Intent(Edit_Event.this, MainActivity.class);
+                    //intent.putExtra("pagenumber", page);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
-
     }
 
     public void popTimePicker(View view)

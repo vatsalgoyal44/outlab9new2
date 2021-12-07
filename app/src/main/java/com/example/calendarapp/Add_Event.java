@@ -27,8 +27,13 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
+import java.util.regex.*;
+
 
 public class Add_Event extends AppCompatActivity {
     private MaterialButton btnSubmit;
@@ -40,6 +45,42 @@ public class Add_Event extends AppCompatActivity {
     TextView heading;
     int hour, minute;
     int page;
+
+    public static boolean validateJavaDate(String strDate)
+    {
+        /* Check if date is 'null' */
+        if (strDate.trim().equals(""))
+        {
+            return true;
+        }
+        /* Date is not 'null' */
+        else
+        {
+            /*
+             * Set preferred date format,
+             * For example MM-dd-yyyy, MM.dd.yyyy,dd.MM.yyyy etc.*/
+            SimpleDateFormat sdfrmt = new SimpleDateFormat("dd/MM/yyyy");
+            sdfrmt.setLenient(false);
+            /* Create Date object
+             * parse the string into date
+             */
+            try
+            {
+                java.util.Date javaDate = sdfrmt.parse(strDate);
+                System.out.println(strDate+" is valid date format");
+            }
+            /* Date format is invalid */
+            catch (ParseException e)
+            {
+                System.out.println(strDate+" is Invalid Date format");
+                return false;
+            }
+            /* Return true if date format is valid */
+            return true;
+        }
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,22 +205,45 @@ public class Add_Event extends AppCompatActivity {
                 Time=time.getText().toString();
                 Description=description.getText().toString();
                 Duration=duration.getText().toString();
+
                 if (Type.equals("assignment")) {
                     Date=submitdate.getText().toString();
                     Time=submittime.getText().toString();
                     Duration="null";
                 }
 
-                event_model new_event= new event_model(Title,Date,Time,Description,Duration,Type);
+                Pattern timeP = Pattern.compile("([01][0-9]|2[0-3]):[0-5][0-9]");
+                //Pattern dateP = Pattern.compile("^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$");
+                Matcher timeM= timeP.matcher(Time);
+                //Matcher  dateM= dateP.matcher(Date);
+                Matcher  durationM= timeP.matcher(Duration);
+                boolean timeB = timeM.matches();
+                //boolean dateB = dateM.matches();
+                boolean durationB = durationM.matches();
 
-                DataBaseHelper dataBaseHelper=new DataBaseHelper(Add_Event.this);
-                dataBaseHelper.addEvent(Type,new_event);
+                if(Duration.equals("")||Title.equals("")||Date.equals("")||Time.equals("")||Description.equals("")){
+                    Toast.makeText(Add_Event.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                }
+                else if(!timeB){
+                    Toast.makeText(Add_Event.this, "Please fill time in following format hh:mm or choose from clock button", Toast.LENGTH_SHORT).show();
+                }
+                else if(!validateJavaDate(Date)){
+                    Toast.makeText(Add_Event.this, "Please fill date in following format dd/mm/yyyy or choose from calendar button", Toast.LENGTH_SHORT).show();
+                }
+                else if(!durationB && !Type.equals("assignment")){
+                    Toast.makeText(Add_Event.this, "Please fill duration in following format hh:mm or choose from clock button", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    event_model new_event = new event_model(Title, Date, Time, Description, Duration, Type);
 
-                    Intent intent=new Intent(Add_Event.this,MainActivity.class);
-                    intent.putExtra("pagenumber",page);
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(Add_Event.this);
+                    dataBaseHelper.addEvent(Type, new_event);
+
+                    Intent intent = new Intent(Add_Event.this, MainActivity.class);
+                    intent.putExtra("pagenumber", page);
                     startActivity(intent);
                     finish();
-
+                }
             }
         });
 
