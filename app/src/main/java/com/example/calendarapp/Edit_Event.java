@@ -46,6 +46,7 @@ public class Edit_Event extends AppCompatActivity {
     TextView heading;
     event_model Curr_event;
     int ID;
+    int page;
     int hour, minute;
 
     public static boolean validateJavaDate(String strDate)
@@ -132,15 +133,19 @@ public class Edit_Event extends AppCompatActivity {
 
         if(Type.equals("assignment")){
             heading.setText("Edit Assignment");
+            page = 2;
         }
         else if(Type.equals("exam_quiz")){
             heading.setText("Edit Exam or quiz");
+            page = 1;
         }
         else if(Type.equals("lecture")){
             heading.setText("Edit Lecture");
+            page =3;
         }
         else if(Type.equals("studyplan")){
             heading.setText("Edit Study Plan");
+            page = 0;
         }
 
 
@@ -233,8 +238,8 @@ public class Edit_Event extends AppCompatActivity {
                 //boolean dateB = dateM.matches();
                 boolean durationB = durationM.matches();
 
-                if(Duration.equals("")||Title.equals("")||Date.equals("")||Time.equals("")||Description.equals("")){
-                    Toast.makeText(Edit_Event.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                if(Duration.equals("")||Title.equals("")||Date.equals("")||Time.equals("")){
+                    Toast.makeText(Edit_Event.this, "Please fill all * marked fields", Toast.LENGTH_SHORT).show();
                 }
                 else if(!timeB){
                     Toast.makeText(Edit_Event.this, "Please fill valid time in following format hh:mm or choose from clock button", Toast.LENGTH_SHORT).show();
@@ -252,7 +257,7 @@ public class Edit_Event extends AppCompatActivity {
                     dataBaseHelper.editEvent(Type, new_event);
 
                     Intent intent = new Intent(Edit_Event.this, MainActivity.class);
-                    //intent.putExtra("pagenumber", page);
+                    intent.putExtra("pagenumber", page);
                     startActivity(intent);
                     finish();
                 }
