@@ -61,6 +61,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        cv.put(EVENT_ID, event.getID());
         cv.put(EVENT_TITLE, event.getTitle());
         cv.put(EVENT_DATE, event.getDate());
         cv.put(EVENT_TIME, event.getTime());
@@ -68,10 +69,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(EVENT_TYPE, type);
         cv.put(EVENT_DURATION, event.getDuration());
 
-        long update = db.update(EVENT_TABLE,cv,"EVENT_ID = ?",new String[] { Integer.toString(event.getID()) });
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(event.getTime() + " Yahan Print kiya hai ! ");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(event.getID() + " Yahan Print kiya hai ! ");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+        long update = db.update(EVENT_TABLE,cv,EVENT_ID + " = ?",new String[] { Integer.toString(event.getID()) });
 
         db.close();
-
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(update);
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         if(update==(-1))return false;
         else return true;
     }

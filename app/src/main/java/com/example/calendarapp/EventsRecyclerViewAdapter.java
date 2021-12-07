@@ -48,11 +48,10 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
         event_model Event=Events.get(position);
         //DOUBT
         holder.title.setText(Event.getTitle());
-        System.out.println(Event.getTitle() + " Yahan print kiya hai1 ! ");
-        holder.date.setText(Event.getDate());
-        holder.time.setText(Event.getTime());
-        holder.description.setText(Event.getDescription());
-        holder.duration.setText(Event.getDuration());
+        holder.date.setText("Date: " + Event.getDate());
+        holder.time.setText("Time: " + Event.getTime());
+        holder.description.setText("Description: " + Event.getDescription());
+        holder.duration.setText("Duration: " + Event.getDuration());
 
         if(Event.getDuration().equals("null")){
             holder.duration.setVisibility(View.GONE);
@@ -78,7 +77,9 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
                 Intent intent=new Intent(activity,Edit_Event.class);
                 intent.putExtra("type",Event.getType());
                 intent.putExtra("Id",Event.getID());
-                System.out.println(Event.getID() + "Yahan print kiya hai ! ");
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                System.out.println(Event.getID() + " Yahan ID print kiya hai1 ! ");
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 activity.startActivity(intent);
 
             }
