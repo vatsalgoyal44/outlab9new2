@@ -12,12 +12,13 @@
     <color name="yellow2">#8BBDFF</color>
     <color name="red">#FF0000</color>
     <color name="green">#00FF00</color>
-    <color name="primaryyellow">#80CEE1</color>
-    <color name="pastelgreen">#77dd77</color>
+    <color name="primaryblue">#80CEE1</color>
+    <color name="pastelgreen">#8BF8B8</color>
     <color name="pastelpink">#809bce</color>
-    <color name="lightblue">#edf2fb</color>
+    <color name="lightblue">#E7FDFF</color>
     <color name="ns_primaryDark">#80CEE1</color>
     <color name="chatBlue">#B5DEFF</color>
+    <color name="lightyellow">#FCFCD4</color>
     #B5DEFF
 
 </resources>

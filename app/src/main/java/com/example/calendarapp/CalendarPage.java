@@ -71,6 +71,26 @@ public class CalendarPage extends AppCompatActivity {
         dateHashMap.put(30, "event");
 
 */
+
+
+        final ImageButton showPreviousMonthBut = findViewById(R.id.previousmonth);
+        final ImageButton showNextMonthBut = findViewById(R.id.nextmonth);
+
+        showPreviousMonthBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eventsCalendar.scrollLeft();
+            }
+        });
+
+        showNextMonthBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eventsCalendar.scrollRight();
+            }
+        });
+
+
         TextView selecteddate = findViewById(R.id.selectedDate);
         Calendar calendar = Calendar.getInstance();
         selecteddate.setText(calendar.get(Calendar.DAY_OF_MONTH) + " " + (new DateFormatSymbols().getMonths()[calendar.get(Calendar.MONTH)]) + " " + calendar.get(Calendar.YEAR));

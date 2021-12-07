@@ -4,15 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.22239583333333332" />
-        <entry key="..\:/Users/hp/Desktop/Apps/outlab9new2/app/src/main/res/layout/activity_add_event.xml" value="0.17552083333333332" />
-        <entry key="..\:/Users/hp/Desktop/Apps/outlab9new2/app/src/main/res/layout/activity_edit_event.xml" value="0.17552083333333332" />
-        <entry key="..\:/Users/hp/Desktop/Apps/outlab9new2/app/src/main/res/layout/event_list_item.xml" value="0.304178814382896" />
+        <entry key="app/src/main/res/drawable/edit.xml" value="0.22395833333333334" />
+        <entry key="app/src/main/res/drawable/ic_action_date_back.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout/absent_view.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/activity_add_event.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/activity_calendar_page.xml" value="0.23420284639900696" />
+        <entry key="app/src/main/res/layout/activity_edit_event.xml" value="0.13425925925925927" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21472681269595076" />
         <entry key="app/src/main/res/layout/currentview.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/default_view.xml" value="0.8667513766748998" />
+        <entry key="app/src/main/res/layout/event_list_item.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/fragment_assignments.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment_exams.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment_lectures.xml" value="0.20729166666666668" />

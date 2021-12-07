@@ -45,7 +45,7 @@ public class Edit_Event extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_event);
+        setContentView(R.layout.activity_edit_event);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Type = extras.getString("type");
@@ -53,7 +53,7 @@ public class Edit_Event extends AppCompatActivity {
             ID = extras.getInt("Id");
         }
 
-        heading=findViewById(R.id.eventtypeedit);
+        heading=findViewById(R.id.eventTypeEdit);
         title = (EditText) findViewById(R.id.enterTitleedit);
         date = findViewById(R.id.enterDateedit);
         time = findViewById(R.id.enterTimeedit);
