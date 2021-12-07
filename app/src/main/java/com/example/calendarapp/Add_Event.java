@@ -39,6 +39,7 @@ public class Add_Event extends AppCompatActivity {
     String Title,Date,Time,Description,Type,Duration;
     TextView heading;
     int hour, minute;
+    int page;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +55,19 @@ public class Add_Event extends AppCompatActivity {
 
         if(Type.equals("assignment")){
             heading.setText("Add Assignment");
+            page = 2;
         }
         else if(Type.equals("exam_quiz")){
             heading.setText("Add Exam or quiz");
+            page = 1;
         }
         else if(Type.equals("lecture")){
             heading.setText("Add Lecture");
+            page = 3;
         }
         else if(Type.equals("studyplan")){
             heading.setText("Add Study Plan");
+            page = 0;
         }
 
         title = (EditText) findViewById(R.id.enterTitle);
@@ -171,6 +176,7 @@ public class Add_Event extends AppCompatActivity {
                 dataBaseHelper.addEvent(Type,new_event);
 
                     Intent intent=new Intent(Add_Event.this,MainActivity.class);
+                    intent.putExtra("pagenumber",page);
                     startActivity(intent);
                     finish();
 

@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setText("Assign-\nments");
         tabLayout.getTabAt(3).setText("Lectures");
 
+        if (getIntent().getExtras() != null){
+            int page = getIntent().getExtras().getInt("pagenumber");
+            viewPager.setCurrentItem(page, true);
+        }
 
     }
 
