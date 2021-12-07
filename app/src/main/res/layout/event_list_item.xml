@@ -107,7 +107,7 @@
                     android:layout_height="30dp"
                     android:src="@drawable/edit"
                     android:layout_weight="0"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>

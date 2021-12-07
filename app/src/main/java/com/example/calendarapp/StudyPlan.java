@@ -90,7 +90,7 @@ public class StudyPlan extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(),Add_Event.class);
-                    intent.putExtra("type","studyplan");
+                intent.putExtra("type","studyplan");
                 getActivity().startActivity(intent);
             }
         });

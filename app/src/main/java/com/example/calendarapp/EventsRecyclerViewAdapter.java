@@ -26,7 +26,7 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
     public EventsRecyclerViewAdapter(ArrayList<event_model> events, Context ctx) {
         this.Events = events;
         this.ctx = ctx;
-
+        this.activity=(Activity) ctx;
     }
 
     public void setPosts(ArrayList<event_model> events) {
@@ -75,6 +75,11 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
             @Override
             public void onClick(View view) {
                 //DOUBT
+                Intent intent=new Intent(activity,Edit_Event.class);
+                intent.putExtra("type",Event.getType());
+                intent.putExtra("Id",Event.getID());
+                System.out.println(Event.getID() + "Yahan print kiya hai ! ");
+                activity.startActivity(intent);
 
             }
         });

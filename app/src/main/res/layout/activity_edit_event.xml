@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Edit_Event"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp">
+
+
+    <TextView
+        android:id="@+id/eventtypeedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="Add Event"
+        android:textColor="@color/yellow"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventTitleedit"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventtypeedit"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="25dp"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="3dp"
+        app:hintTextColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/enterTitleedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventTitleedit"
+        app:layout_constraintTop_toBottomOf="@id/eventTitleedit"
+        android:id="@+id/dateRecViewedit"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventDateedit"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:hintTextColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/enterDateedit"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Date"
+                android:inputType="date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+
+            android:id="@+id/datepickeredit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventDateedit"
+            android:src="@drawable/ic_baseline_calendar_month_24" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateRecViewedit"
+        android:id="@+id/subdateReledit">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventsubmitDateedit"
+            android:layout_width="300dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/black"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/entersubmitDateedit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:hint="Submission Date"
+                android:visibility="gone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <ImageButton
+
+            android:id="@+id/subdatepickeredit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventsubmitDateedit"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_calendar_month_24" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/timeRelViewedit"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subdateReledit"
+
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventTimeedit"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/black">
+
+            <EditText
+                android:id="@+id/enterTimeedit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Time"
+                android:inputType="time" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+
+            android:id="@+id/timepickeredit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventTimeedit"
+            android:src="@drawable/ic_baseline_access_time_filled_24"
+            android:onClick="popTimePicker"/>
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeRelViewedit"
+        android:id="@+id/submittimeReledit"
+        app:layout_constraintTop_toBottomOf="@id/timeRelViewedit"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventsubmitTimeedit"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/black"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/entersubmitTimeedit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Submission Time"
+                android:visibility="gone"
+                android:inputType="time" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+
+            android:id="@+id/subtimepickeredit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventsubmitTimeedit"
+            android:onClick="popTimePicker2"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_access_time_filled_24" />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/submittimeReledit"
+        app:layout_constraintTop_toBottomOf="@id/submittimeReledit"
+        android:id="@+id/DescReledit"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/eventDurationedit"
+            android:layout_width="300dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/black">
+
+            <EditText
+                android:id="@+id/enterDurationedit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Duration"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <ImageButton
+
+            android:id="@+id/durtimepickeredit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/eventDurationedit"
+            android:onClick="popTimePicker3"
+            android:src="@drawable/ic_baseline_access_time_filled_24" />
+    </RelativeLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventDescriptionedit"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_below="@id/DescReledit"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventDurationedit"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/black">
+
+        <EditText
+            android:id="@+id/enterDescriptionedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmitedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventDescriptionedit"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/primaryyellow"
+        android:elevation="0dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingLeft="30dp"
+        android:paddingTop="17dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="17dp"
+        android:text="Save"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventDescriptionedit"
+        app:layout_constraintVertical_bias="0.0"
+        app:strokeColor="@color/yellow"
+        app:strokeWidth="2dp" />
+
+
+
+</RelativeLayout>
