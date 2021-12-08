@@ -48,6 +48,7 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
         event_model Event=Events.get(position);
         //DOUBT
         holder.title.setText(Event.getTitle());
+
         holder.date.setText("Date: " + Event.getDate());
         holder.time.setText("Time: " + Event.getTime());
         holder.description.setText("Description: " + Event.getDescription());
@@ -55,6 +56,8 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
 
         if(Event.getDuration().equals("null")){
             holder.duration.setVisibility(View.GONE);
+            holder.date.setText("Submission Date: " + Event.getDate());
+            holder.time.setText("Submission Time: " + Event.getTime());
         }else{
             holder.duration.setVisibility(View.VISIBLE);
         }

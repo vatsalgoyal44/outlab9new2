@@ -52,12 +52,12 @@
                 android:id="@+id/customcal"
                 android:layout_width="wrap_content"
                 android:layout_height="300dp"
+                app:compactCalendarTextSize="18sp"
                 android:layout_below="@id/monthname"
                 app:compactCalendarBackgroundColor="@color/lightyellow"
-                app:compactCalendarCurrentDayBackgroundColor="@color/pastelgreen"
                 app:compactCalendarCurrentSelectedDayBackgroundColor="@color/primaryblue"
-                app:compactCalendarTargetHeight="300dp"
-                app:compactCalendarTextSize="18sp" />
+                app:compactCalendarCurrentDayBackgroundColor="@color/pastelgreen"
+                app:compactCalendarTargetHeight="300dp" />
 
             <TextView
                 android:id="@+id/selectedDate"

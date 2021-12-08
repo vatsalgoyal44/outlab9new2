@@ -46,6 +46,7 @@ public class Edit_Event extends AppCompatActivity {
     TextView heading;
     event_model Curr_event;
     int ID;
+    int page;
     int hour, minute;
 
     public static boolean validateJavaDate(String strDate)
@@ -132,15 +133,19 @@ public class Edit_Event extends AppCompatActivity {
 
         if(Type.equals("assignment")){
             heading.setText("Edit Assignment");
+            page = 2;
         }
         else if(Type.equals("exam_quiz")){
             heading.setText("Edit Exam or quiz");
+            page = 1;
         }
         else if(Type.equals("lecture")){
             heading.setText("Edit Lecture");
+            page =3;
         }
         else if(Type.equals("studyplan")){
             heading.setText("Edit Study Plan");
+            page = 0;
         }
 
 
@@ -165,7 +170,17 @@ public class Edit_Event extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month++;
-                        String dat = day + "/" + month +"/"+year;
+                        String dat;
+                        if (month<10 && day<10){
+                            dat= "0" + day + "/" + "0" + month +"/"+year;
+                        }
+                        else if (day<10){
+                            dat= "0" + day + "/" + month +"/"+year;
+                        }
+                        else if (month<10){
+                            dat= day + "/" + "0" +  month +"/"+year;
+                        }
+                        else dat = day + "/" + month +"/"+year;
                         date.setText(dat);
                     }
                 }, year, month, day);
@@ -182,7 +197,17 @@ public class Edit_Event extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month++;
-                        String dat = day + "/" + month +"/"+year;
+                        String dat;
+                        if (month<10 && day<10){
+                            dat= "0" + day + "/" + "0" + month +"/"+year;
+                        }
+                        else if (day<10){
+                            dat= "0" + day + "/" + month +"/"+year;
+                        }
+                        else if (month<10){
+                            dat= day + "/" + "0" +  month +"/"+year;
+                        }
+                        else dat= day + "/" + month +"/"+year;
                         submitdate.setText(dat);
                     }
                 }, year, month, day);
@@ -218,6 +243,7 @@ public class Edit_Event extends AppCompatActivity {
                 Time=time.getText().toString();
                 Description=description.getText().toString();
                 Duration=duration.getText().toString();
+
                 if (Type.equals("assignment")) {
                     Date=submitdate.getText().toString();
                     Time=submittime.getText().toString();
@@ -225,21 +251,21 @@ public class Edit_Event extends AppCompatActivity {
                 }
 
                 Pattern timeP = Pattern.compile("([01][0-9]|2[0-3]):[0-5][0-9]");
-                //Pattern dateP = Pattern.compile("^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$");
+                Pattern dateP = Pattern.compile("^[0-9]{2}/[0-9]{2}/[0-9]{4}$");
                 Matcher timeM= timeP.matcher(Time);
-                //Matcher  dateM= dateP.matcher(Date);
+                Matcher  dateM= dateP.matcher(Date);
                 Matcher  durationM= timeP.matcher(Duration);
                 boolean timeB = timeM.matches();
-                //boolean dateB = dateM.matches();
+                boolean dateB = dateM.matches();
                 boolean durationB = durationM.matches();
 
                 if(Duration.equals("")||Title.equals("")||Date.equals("")||Time.equals("")){
-                    Toast.makeText(Edit_Event.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Edit_Event.this, "Please fill all * marked fields", Toast.LENGTH_SHORT).show();
                 }
                 else if(!timeB){
                     Toast.makeText(Edit_Event.this, "Please fill valid time in following format hh:mm or choose from clock button", Toast.LENGTH_SHORT).show();
                 }
-                else if(!validateJavaDate(Date)){
+                else if(!validateJavaDate(Date)||!dateB){
                     Toast.makeText(Edit_Event.this, "Please fill valid date in following format dd/mm/yyyy or choose from calendar button", Toast.LENGTH_SHORT).show();
                 }
                 else if(!durationB && !Type.equals("assignment")){
@@ -252,10 +278,9 @@ public class Edit_Event extends AppCompatActivity {
                     dataBaseHelper.editEvent(Type, new_event);
 
                     Intent intent = new Intent(Edit_Event.this, MainActivity.class);
-                    //intent.putExtra("pagenumber", page);
+                    intent.putExtra("pagenumber", page);
                     startActivity(intent);
-                    finish();
-                }
+                    finishAffinity();                }
             }
         });
     }

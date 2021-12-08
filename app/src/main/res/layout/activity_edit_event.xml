@@ -44,7 +44,7 @@
             android:id="@+id/enterTitleedit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title" />
+            android:hint="Title *" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <RelativeLayout
@@ -72,7 +72,7 @@
                 android:id="@+id/enterDateedit"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="Date"
+                android:hint="Date *"
                 android:inputType="date" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -155,7 +155,7 @@
                 android:id="@+id/enterTimeedit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Time"
+                android:hint="Time *"
                 android:inputType="time" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -245,7 +245,7 @@
                 android:id="@+id/enterDurationedit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Duration"/>
+                android:hint="Duration *"/>
 
         </com.google.android.material.textfield.TextInputLayout>
         <ImageButton
