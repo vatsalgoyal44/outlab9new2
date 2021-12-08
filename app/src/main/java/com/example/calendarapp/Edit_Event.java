@@ -233,7 +233,7 @@ public class Edit_Event extends AppCompatActivity {
                 //boolean dateB = dateM.matches();
                 boolean durationB = durationM.matches();
 
-                if(Duration.equals("")||Title.equals("")||Date.equals("")||Time.equals("")||Description.equals("")){
+                if(Duration.equals("")||Title.equals("")||Date.equals("")||Time.equals("")){
                     Toast.makeText(Edit_Event.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
                 }
                 else if(!timeB){

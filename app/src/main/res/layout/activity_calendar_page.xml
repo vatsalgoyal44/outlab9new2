@@ -51,13 +51,13 @@
             <com.github.sundeepk.compactcalendarview.CompactCalendarView
                 android:id="@+id/customcal"
                 android:layout_width="wrap_content"
-                android:layout_height="260dp"
-                app:compactCalendarTextSize="18sp"
+                android:layout_height="300dp"
                 android:layout_below="@id/monthname"
                 app:compactCalendarBackgroundColor="@color/lightyellow"
-                app:compactCalendarCurrentSelectedDayBackgroundColor="@color/primaryblue"
                 app:compactCalendarCurrentDayBackgroundColor="@color/pastelgreen"
-                app:compactCalendarTargetHeight="300dp" />
+                app:compactCalendarCurrentSelectedDayBackgroundColor="@color/primaryblue"
+                app:compactCalendarTargetHeight="300dp"
+                app:compactCalendarTextSize="18sp" />
 
             <TextView
                 android:id="@+id/selectedDate"
