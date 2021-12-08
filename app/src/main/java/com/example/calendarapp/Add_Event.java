@@ -262,7 +262,7 @@ public class Add_Event extends AppCompatActivity {
                     Intent intent = new Intent(Add_Event.this, MainActivity.class);
                     intent.putExtra("pagenumber", page);
                     startActivity(intent);
-                    finish();
+                    finishAffinity();
                 }
             }
         });

@@ -280,8 +280,7 @@ public class Edit_Event extends AppCompatActivity {
                     Intent intent = new Intent(Edit_Event.this, MainActivity.class);
                     intent.putExtra("pagenumber", page);
                     startActivity(intent);
-                    finish();
-                }
+                    finishAffinity();                }
             }
         });
     }
